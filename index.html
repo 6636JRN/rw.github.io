@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+
+  <!-- Basic Page Needs -->
+  <meta charset="utf-8">
+  <title>RW Sales Report</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- LOGO -->
+  <link rel="icon" type="image/png" href="images/RW_logo.png">
+
+</head>
+<body>
+
+  <div class="row">
+    <div class="three columns">-</div>
+    <div class="six columns">
+      <p></p>
+      <h1 style="text-align: center;">正道工業系統櫃事業部</h1>
+      <h2 style="text-align: center;">業務表單</h2>
+      <p></p>
+      <form>
+
+        <label for="salesNames">業務姓名</label>
+        <select class="u-full-width" id="salesNames">
+          <option value="Option 1">請選擇</option>
+          <option value="Option 2">陳柔穎</option>
+          <option value="Option 3">陳宏彬</option>
+        </select>
+
+        <label for="todayWorks">今日工作</label>
+        <textarea class="u-full-width" placeholder="今日工作" id="todayWorks"></textarea>
+
+        <label for="tomorrowDo">明日預計</label>
+        <textarea class="u-full-width" placeholder="明日預計" id="tomorrowDo"></textarea>
+
+        <label for="todo_Lists">待辦事項</label>
+        <textarea class="u-full-width" placeholder="待辦事項" id="todo_Lists"></textarea>
+
+        <input class="button-primary" type="submit" value="提交" style="font-size: 16px;" id="submit">
+
+      </form>
+    </div>
+    <div class="three columns"></div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function() {
+      $('#submit').on('click', function(event) {
+        event.preventDefault();  // 阻止表單默認提交行為
+
+        // 業務姓名
+        var salesNames = $('#salesNames').val() || '未填寫';
+
+        // 今日工作
+        var todayWorks = $('#todayWorks').val() || '未填寫';
+
+        // 明日預計
+        var tomorrowDo = $('#tomorrowDo').val() || '未填寫';
+
+        // 待辦事項
+        var todo_Lists = $('#todo_Lists').val() || '未填寫';
+
+        // post
+        var data = {
+          'entry.385655136': salesNames,
+          'entry.722130951': todayWorks,
+          'entry.1333253996': tomorrowDo,
+          'entry.2009738262': todo_Lists
+        };
+        $.ajax({
+          type: 'POST',
+          url: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSepHWMZ_YP3WJH4nChM4KkeiVnlIU0X5BU5by5n7Ph8dWJBZA/formResponse',
+          data: data,
+          // contentType: 'application/json',
+          contentType: 'application/x-www-form-urlencoded',
+          // dataType: 'jsonp',
+          complete: function() {
+            alert('資料已送出！');
+          }
+        });
+
+      });
+    });
+  </script>
+
+
+
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <p></p>
+      <p style="text-align: center; font-size: 20px; color: rgb(160, 160, 160);">正道工業系統櫃事業部</p>
+    </div>
+  </div>
+
+<!-- End Document -->
+</body>
+</html>
